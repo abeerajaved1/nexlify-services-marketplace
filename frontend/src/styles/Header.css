@@ -1,0 +1,174 @@
+/* src/styles/Header.css */
+
+:root {
+  --cream: #fdfbf7;
+  --deep-blue: #0d3b66;
+  --light-blue: #3c7cb1;
+  --accent-blue: #4a90e2;
+  --text-dark: #1a1a1a;
+  --shadow: rgba(13, 59, 102, 0.12);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(250, 250, 250, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(12px);
+  /* box-shadow: 0 4px 25px var(--shadow); */
+  transition: all 0.4s ease;
+}
+
+.header.scrolled {
+  background: rgba(253, 251, 247, 0.94);
+  box-shadow: 0 6px 35px rgba(13, 59, 102, 0.18);
+}
+
+.nav-container {
+  max-width: 1400px; /* slightly wider on large screens */
+  margin: 0 auto;
+  padding: clamp(0.8rem, 3vw, 1.2rem) clamp(1rem, 4vw, 2.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-img {
+  height: clamp(42px, 8vw, 58px); /* scales nicely */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.logo-wrapper:hover .logo-img {
+  transform: scale(1.06);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: clamp(1.4rem, 2.5vw, 2.4rem);
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-links li a {
+  position: relative;
+  color: var(--text-dark);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  letter-spacing: 0.3px;
+  transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  padding: 0.4rem 0.2rem;
+}
+
+.nav-links li a.active,
+.nav-links li a:hover {
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2.5px;
+  bottom: -6px;
+  left: 50%;
+  background: var(--accent-blue);
+  transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform: translateX(-50%);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.4);
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 75%;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.15);
+}
+
+/* ── Responsive Breakpoints ── */
+
+/* Very small phones (< ~480px) */
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0.8rem 1rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+}
+
+/* Mobile → Tablet transition */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(253, 251, 247, 0.96);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    padding: clamp(1.5rem, 5vw, 2.5rem) 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-links.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .nav-links li a {
+    font-size: clamp(1.1rem, 4vw, 1.35rem);
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .nav-links li a::after {
+    left: 0;
+    transform: none;
+  }
+
+  .nav-links li a:hover::after,
+  .nav-links li a.active::after {
+    width: 60%;
+  }
+}
+
+/* Tablets & small laptops (768px–1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-links {
+    gap: 1.8rem;
+  }
+
+  .nav-links li a {
+    font-size: 1rem;
+  }
+}
+
+/* Large screens — no changes needed, already fluid */

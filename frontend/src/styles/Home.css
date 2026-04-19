@@ -1,0 +1,151 @@
+/* src/styles/Home.css */
+
+.home {
+  margin-top: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #fff8f80f; /* fallback if video fails to load */
+}
+
+/* ── Hero with Video Background ── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* or contain – cover fills screen */
+  z-index: 1;
+}
+
+/* Optional subtle overlay to improve text readability */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 59, 102, 0.28) 0%,
+    rgba(13, 59, 102, 0.45) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1000px;
+  padding: 2rem 1.5rem;
+}
+
+
+ 
+
+/* Typography */
+.hero-title {
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+  letter-spacing: -1px;
+  background: linear-gradient(90deg, #4a90e2, #3c7cb1, #16a4d3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+  font-weight: 400;
+  opacity: 0.95;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  color: black;
+}
+
+.hero-tagline {
+  font-size: clamp(1.1rem, 2.8vw, 1.35rem);
+  font-weight: 300;
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+  color: black;
+}
+
+/* CTA Button */
+.cta-button {
+  background: linear-gradient(135deg, #4a90e2, #3c7cb1);
+  color: white;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: 600;
+  padding: clamp(0.9rem, 2.5vw, 1.3rem) clamp(2rem, 5vw, 3rem);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.35);
+}
+
+.cta-button:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 20px 50px rgba(74, 144, 226, 0.5);
+  background: linear-gradient(135deg, #3c7cb1, #4a90e2);
+}
+
+/* ── Animations ── */
+.fade-in-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  animation: fadeInScale 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Responsive Adjustments ── */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 85vh;
+  }
+
+ 
+
+  .hero-title {
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle br {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 1rem;
+  }
+
+  .glass-card {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 320px;
+  }
+}
