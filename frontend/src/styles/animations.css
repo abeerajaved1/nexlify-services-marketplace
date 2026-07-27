@@ -1,0 +1,21 @@
+/* src/styles/animations.css */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-shift {
+  background: linear-gradient(270deg, var(--primary-indigo), var(--primary-purple), var(--accent-blue), var(--accent-purple));
+  background-size: 800% 800%;
+  animation: gradientShift 18s ease infinite;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
